@@ -88,7 +88,9 @@ public class GenericExample1 {
 #### 컬렉션 프레임워크
 자바는 널리 알려져 있는 자료구조(배열, 집합, 딕셔너리, 스택, 큐 등)를 바탕으로 객체들을 효율적으로 추가, 삭제, 검색할 수 있도록 관련된 인터페이스와 클래스들을 java.util 패키지에 포함시켜 놓았습니다. 이들을 총칭해서 컬렉션 프레임워크라고 부릅니다.
 ![Alt text](<image/Screenshot 2024-03-29 at 10.38.11 AM.png>)
-지금 아기 사자들이 기억해두었으면 하는 자료구조로는 List, Set, Map 3가지면 충분합니다. 그중에서도 ArrayList, HashSet, HashMap 구현 클래스만 알면 됩니다.
+
+>⚠️ 지금 아기 사자들이 기억해두었으면 하는 자료구조로는 List, Set, Map 3가지면 충분합니다. 그 중에서도 ArrayList, HashSet, HashMap 구현 클래스만 알면 됩니다.
+
 ![Alt text](<image/Screenshot 2024-03-29 at 10.38.31 AM.png>)
 
 
