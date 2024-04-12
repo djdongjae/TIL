@@ -19,30 +19,53 @@ gcc는 native compiler이기도 하지만 동시에 다양한 CPU architecure에
 
 ---
 
-#### arm-2010q1-188-arm-none-eabi.bin.gz 압축 해제
+#### arm-2010q1-188-arm-none-eabi.bin.gz 압축 해제 및 실행
 
-파일을 원하는 위치로 이동시킨 후 `gzip -d arm-2010q1-188-arm-none-eabi.bin.gz` 명령어를 통해 해당 파일의 압축을 해제한다. 압축 해제를 완료했으면 `.profile` 파일을 열어서 명령어를 사용할 수 있도록 환경변수를 설정해 준다.
+파일을 원하는 위치로 이동시킨 후 `gunzip arm-2010q1-188-arm-none-eabi.bin.gz` 명령어를 통해 해당 파일의 압축을 해제한다. 
+![Alt text](<image/Screenshot from 2024-04-04 09-13-29.png>)
+압축 해제를 완료하였으면 다음과 같이 `chmod a+x ~.bin`을 통해 user, group, other 모두에게 실행 권한을 부여하고 실행한다.
+![Alt text](<image/Screenshot from 2024-04-04 09-22-22.png>)
 
-#### hello.c 컴파일 과정상 발생하는 문제
-설치와 환경변수 세팅을 모두 마쳤으면 `hello.c` 파일을 `arm-none-eabi-gcc -o hello_arm hello.c` 명령어를 통해 cross compile 시도한다. 하지만 해당 명령어를 실행해 보면 정상적으로 컴파일되지 않고 절차상 몇 가지 문제를 마주하게 된다.
+
+#### 실행 과정상 발생하는 문제
+명령어를 실행해 보면 정상적으로 실행되지 않고 절차상 몇 가지 문제를 마주하게 된다.
 
 ##### 1. Bash Shell 문제
 
 `ls l /bin/sh` 명령어를 통해 현재 실제 bash shell이 가리키는 프로그램을 확인할 수 있다. `/bin/sh -> dash*` 과 같은 결과를 보인다면 dash가 아닌 bash 프로그램을 가리키도록 전환해야 한다.
+![Alt text](<image/Screenshot from 2024-04-04 09-27-04.png>)
 
 ##### 2. /lib/libc.so.6 파일이 없다는 오류
 
-`ln -s /lib64/libc.so.6 /lib/libc.so.6` 입력을 통해 링크 파일을 생성하여 원본 파일과 연결된 가상의 파일을 생성해 준다.
+`sudo ln -s /lib/x86_64-linux-gnu/libc.so.6 libc.so.6` 입력을 통해 링크 파일을 생성하여 `libc.so.6` 파일이 `/lib/x86_64-linux-gnu`를 가리키도록 설정한다.
+![Alt text](<image/Screenshot from 2024-04-04 09-42-44.png>)
 
 ##### 3. libxext.so.6 파일이 없다는 오류
 
-다시 hello.c의 컴파일을 시도해 보면 libxext.so.6의 파일이 없다는 오류가 발생한다. `apt-file search libxext.so.6` 명령어를 통해 32bit 용 `libxext6:i386` 을 다운 받는다. 
-
-> ✅ **apt-file search < 파일명 >**
+다시 hello.c의 컴파일을 시도해 보면 libxext.so.6의 파일이 없다는 오류가 발생한다. 
+![Alt text](<image/Screenshot from 2024-04-04 09-45-29.png>)
+`apt-file search libxext.so.6` 명령어를 통해 포함된 패키지를 확인하고 32bit 용 `libxext6:i386` 을 다운 받는다. 
+![Alt text](<image/Screenshot from 2024-04-04 09-57-31.png>)
+> ✅ **apt-file search 파일명**
 특정 파일이 없다는 오류가 발생했을 때 해당 명령어를 사용하면 찾고자 하는 파일이 포함된 패키지 목록을 출력해 준다. 이를 통해 원하는 패키지를 다운 받을 수 있다. apt-file 패키지의 설치 명령은 `sudo apt-get -y install apt-file` 이다.
+![Alt text](<imageScreenshot from 2024-04-04 09-46-52.png>)
+
+이후 GUI 창이 등장하며 이어서 진행해 준다. 설치하고자 하는 위치를 다음과 같이 지정해준다.
+
+![Alt text](<image/Screenshot from 2024-04-04 10-04-03.png>)
+
+정상적으로 설치된 모습을 확인할 수 있다.
+
+![Alt text](<image/Screenshot from 2024-04-04 10-22-01.png>)
+
+#### 4. hello.c 컴파일 과정상 문제
+`hello.c` 파일을 `arm-linux-gnueabihf-gcc -o hello_arm hello.c` 명령어를 통해 cross compile 시도한다. 하지만 해당 명령어를 실행해 보면 정상적으로 컴파일되지 않고 `libz.so.1` 파일이 없다는 문제를 마주하게 된다. 이 또한 위와 같은 방식으로 `apt-file` 명령어를 통해 필요한 패키지를 설치한다.
+![Alt text](<image/Screenshot from 2024-04-04 10-51-34.png>)
 
 
-### gcc cross compiler를 2개 설치한 이유
+
+
+### 여러 종류의 gcc cross compiler가 필요한 이유
 
 ---
 
@@ -66,4 +89,7 @@ Boot Loader와 Kernel은 운영체제와 상관없이 동작하는 raw binary co
 
 #### Serial 연결
 
-해당 연결을 진행하면 임베디드 키트의 상태를 Host에서 console 화면을 통해 확인할 수 있다. 이를 위해서 minicom 패키지를 다운 받아야 한다. 필요한 설정을 마치고 나면 이를 활용하여 Kernel이 적재되기 직전의 상황인 부트로더에 진입할 수 있다. 단 부팅될 때 3초 안에 엔터를 눌러야 하고 종료할 때도 `ctrl-AX`를 입력해야 종료할 수 있다.
+해당 연결을 진행하면 임베디드 키트의 상태를 Host에서 console 화면을 통해 확인할 수 있다. 이를 위해서 minicom 패키지를 다운 받아야 한다.
+![Alt text](<image/Screenshot from 2024-04-04 11-27-10.png>)
+필요한 설정을 마치고 나면 이를 활용하여 Kernel이 적재되기 직전의 상황인 부트로더에 진입할 수 있다. 단 부팅될 때 3초 안에 엔터를 눌러야 하고 종료할 때도 `ctrl-AX`를 입력해야 종료할 수 있다.
+![Alt text](<image/Screenshot from 2024-04-04 11-29-28.png>)
