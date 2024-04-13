@@ -48,7 +48,7 @@ gcc는 native compiler이기도 하지만 동시에 다양한 CPU architecure에
 ![Alt text](<image/Screenshot from 2024-04-04 09-57-31.png>)
 > ✅ **apt-file search 파일명**
 특정 파일이 없다는 오류가 발생했을 때 해당 명령어를 사용하면 찾고자 하는 파일이 포함된 패키지 목록을 출력해 준다. 이를 통해 원하는 패키지를 다운 받을 수 있다. apt-file 패키지의 설치 명령은 `sudo apt-get -y install apt-file` 이다.
-![Alt text](<imageScreenshot from 2024-04-04 09-46-52.png>)
+![Alt text](<image/Screenshot from 2024-04-04 09-46-52.png>)
 
 이후 GUI 창이 등장하며 이어서 진행해 준다. 설치하고자 하는 위치를 다음과 같이 지정해준다.
 
