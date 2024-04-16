@@ -19,7 +19,7 @@
 * [크로스 컴파일러](linux/compiler_install.md)
 
 
-### HTML&CSS
+### Web Basic
 
 ---
 

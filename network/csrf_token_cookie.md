@@ -205,7 +205,7 @@ location / { # location 블록
     }
 ```
 
-#### 요청에 쿠키가 포함되어 전달되지 않는 문제1 : 'SameSite = None'
+#### 요청에 쿠키가 포함되어 전달되지 않는 문제 : 'SameSite = None'
 
 앞선 문제 해결을 통해 쿠키가 정상 설정되었더다 하더라도 여전히 요청 시에는 쿠키가 포함되지 않았다. 알아본 결과 다른 도메인 간의 쿠키 전달을 허용하기 위해서는 Cookie의 속성 중 **SameSite 속성을 None**으로 설정해 주어야 한다는 사실을 알게 되었다.
 
@@ -246,24 +246,6 @@ public class CookieUtils {
         ...
     }
 }
-```
-
-
-#### 요청에 쿠키가 포함되어 전달되지 않는 문제2 : 프론트에서의 CORS 허용
-
-클라이언트에서 서버 자원에 접근하는 경우가 대부분이라 백엔드에서 프론트 출처 CORS 설정을 허용해 주어야 한다는 사실은 충분히 인지하고 있는바였다. 하지만  **프론트엔드 상 설정에 백엔드 출처 또한 접근을 허용하는 CORS 설정이 필요하다**는 사실을 간과하고 있었다. **쿠키를 전달받는다는 것은, 서버에서 클라이언트의 자원에 접근한다는 말과 같은 의미이기 때문이다.** 다음 코드를 react 코드에 추가해 준다.
-
-axios.js
-```javascript
-...
-const instance = axios.create({
-  baseURL: 'https://colot.site',
-  withCredentials: true,
-  headers: {
-    'Access-Control-Allow-Origin': 'https://colot.site',
-  },
-});
-...
 ```
 
 
