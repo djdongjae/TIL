@@ -17,7 +17,8 @@
 ---
 
 * [크로스 컴파일러](linux/compiler_install.md)
-* [부트로더 컴파일](linux/bootloader_compile.md)
+* [부트로더 컴파일(임베디드 리눅스)](linux/bootloader_compile.md)
+* [부트로더 설치(임베디드 리눅스)](linux/bootloader_install.md)
 
 
 ### Web Basic
