@@ -37,3 +37,4 @@
 ---
 
 * [네트워크 통신 개요](network/server_client.md)
+* [HTTP 프로토콜과 REST API](network/http.md)
