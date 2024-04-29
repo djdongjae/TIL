@@ -1,23 +1,47 @@
 # 학생 관리 API 설계
 
-### 배경 지식
+### Spring Framework
 
 ---
 
-#### Spring Framework
+#### 정의
 
-#### 싱글톤 패턴
+Spring Framework는 다형성을, 즉 동일한 코드로 같은 결과를 내는 객체 지향 프로그래밍의 가장 큰 특징을, 극대화하여 구성한 Java 기반의 프레임워크이다. Spring이라는 단어는 문맥에 따라 Spring Framework만을 지칭하기도 하고 이에 활용되는 IoC, DI 컨테이너 기술, 또는 다양한 Projects를 지칭하는 스프링 생태계 자체를 의미하기도 한다.
 
-#### IoC와 DI
+![alt text](<./image/Screenshot 2024-04-29 at 9.46.10 PM.png>)
 
-### 프로젝트 구조
+#### IoC와 DI 컨테이너
+
+IoC와 DI는 Spring Framework에서 가장 핵심적인 기술로, Java의 인터페이스만으로는 다형성을 완벽하게 구현하지 못하는 한계를 극복하게 해주는 기술이다. 인터페이스를 구현하는 클래스의 객체를 생성하는 과정에서 클래스의 종류를 개발자가 직접 선택해야 한다. Spring의 IoC와 DI 컨테이너 기술을 사용하게되면 Bean이라는 객체가 Spring Container에 등록되어 프레임워크 차원에서 자동으로 생성되고 관리된다. `@Component`, `@Service`, `@Repository`, `@Controller`와 같은 어노테이션이 붙은 클래스는 자동으로 Spring Bean으로 등록된다. 이처럼 객체의 생성과 관리를 프레임워크에 위임하는 것을 코드의 제어가 역전되었다하여 **Inversion of Control(IoC), 제어의 역전**이라고 한다.
+
+![alt text](<./image/Screenshot 2024-04-29 at 9.47.16 PM.png>)
+
+또한 등록된 객체들은 서로에게 필요한 관계에 놓여있는 경우 생성자에 `@Autowired` 키워드만 붙어 있다면, 필요한 객체를 해당 Container에서 꺼내어 사용하게끔 해준다. 이처럼 필요한 의존관계를 외부에서 찾아 넣어주는 것을 **Dependency Injection, 의존성 주입**이라고 한다.
+
+> IoC와 DI에 대해 구체적으로 실제 코드를 통해 이해하고 싶다면 인프런 김영한님의 스프링 핵심 원리 기본편을 수강할 것을 추천 - [스프링핵심원리-기본편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8)
+
+![alt text](<./image/Screenshot 2024-04-29 at 9.47.23 PM.png>)
+
+### Spring Web 계층
 
 ---
+
+![alt text](<./image/Screenshot 2024-04-29 at 4.32.48 PM.png>)
+
+* **Web Layer** -  외부 요청과 응답에 대한 처리를 진행하는 역할을 한다.
+* **Service Layer** - 비즈니스 로직이 수행되는 영역이다.
+* **Repository Layer** - 데이터 저장소와 직접 연결되는 영역이다.
+* **DTOs** - 계층 간 데이터 이동에 사용되는 운반 역할을 한다.
+* **Domain Model** - 개발 대상을 표현하는 모델이다.  
 
 ### 프로젝트 설정
 
 ---
 
+![alt text](<./image/Screenshot 2024-04-29 at 5.01.53 PM.png>)
+
+![alt text](<./image/Screenshot 2024-04-29 at 5.02.17 PM.png>)
+  
 * Spring Boot 3.2.5
 * Spring Web
 * Lombok
@@ -61,9 +85,13 @@ tasks.named('test') {
 }
 ```
 
-### Domain Layer
+### Domain Model & Repository Layer
 
 ---
+
+**Domain Model**이란 개발 대상을 모든 사람이 동일한 관점에서 이해하고 공유할 수 있도록 단순화 시킨 것이다. 예를 들어 수강 신청 서비스에서 학생, 학과, 강좌, 수강 등과 같은 것이 도메인이 될 수 있으며 주로 데이터베이스와 연동될 시 테이블과 매칭되어 Entity 모델이라고 하기도 한다.
+
+**Repository Layer**란 데이터 저장소에 접근하는 영역을 의미한다. Spring 계층에서 데이터베이스와 가장 근접하게 연관되어 있는 영역이다.
 
 **Student.java**
 ```java
@@ -436,7 +464,7 @@ public class StudentFixture {
 }
 ```
 
-controller/StudentControllerTest.java
+**StudentControllerTest.java**
 
 ```java
 package org.likelion.firstspringproject.controller;
