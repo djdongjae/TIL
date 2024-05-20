@@ -24,6 +24,8 @@
 * [크로스 컴파일러](linux/compiler_install.md)
 * [부트로더 컴파일(임베디드 리눅스)](linux/bootloader_compile.md)
 * [부트로더 설치(임베디드 리눅스)](linux/bootloader_install.md)
+* [Kernel 컴파일(임베디드 리눅스)](linux/kernel.md)
+* [TFTP 서버 및 xinetd 설치](linux/ftp_install.md)
 
 
 ### Web
