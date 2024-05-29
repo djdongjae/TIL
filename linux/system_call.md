@@ -41,3 +41,99 @@
 
 #### 2.2 나만의 System Call 만들기
 
+##### 2.2.1 새로운 소프트웨어 인터럽트에 해당하는 번호를 할당
+
+![alt text](<./image/Screenshot 2024-05-28 at 3.24.35 PM.png>)
+
+<br>
+
+`kernel` 디렉토리에 오리지널 커널 복사본을 만든다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-22-10.png>)
+
+<br>
+
+아키텍쳐에 의존적인 파일들은 `arch` 디렉토리 밑에 존재한다. 다음 위치로 이동해 `vi unistd.h` 명령어를 입력한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-23-39.png>)
+
+<br>
+
+각각의 번호가 할당된 시스템 콜 함수를 확인할 수 있다. 0번부터 시작하여 375번까지 총 376개의 함수가 등록된 것을 확인할 수 있다. 함수 내부에는 소프트웨어 인터럽트를 유도하는 어셈블리어로 구성된다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-24-01.png>)
+
+<br>
+
+375번에 해당하는 함수 라인을 `yy`명령어로 복사하여 376번에 해당하는 함수를 등록해 준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-26-23.png>)
+
+##### 2.2.2 핸들러 구현
+
+`arch/arm/kernel` 위치에서 `vi entry-common.S` 명령어를 입력한다. 해당 파일은 확장자가 S인 어셈블리어 파일이다. 번호와 함수를 매핑해주는 테이블, `sys_call_table`에 새로운 정보를 등록해야한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-28-40.png>)
+![alt text](<./image/Screenshot from 2024-05-16 11-29-31.png>)
+![alt text](<./image/Screenshot from 2024-05-16 11-29-45.png>)
+
+<br>
+
+밖으로 나와 `vi calls.S` 명령어를 통해 해당 파일을 열어준다. 해당 파일은 번호에 대해 어떤 함수를 호출할 것인가에 대한 테이블 정보를 담고 있는 파일이다. 따라서 **376번에 해당하는 위치에 우리의 함수를 등록해준다**.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-32-16.png>)
+
+
+##### 2.2.3 함수 구현
+
+만들고자 하는 함수가 CPU에 의존적인 함수가 아니기 때문에 `arch` 밑에가 아니라 그냥 커널 아래에 `vi mysyscall.c` 명령어를 통해 함수를 만들어 준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-35-38.png>)
+
+<br>
+
+간단한 프린트 함수를 만든다. 단 커널에서 출력할 내용이라는 점에서 `printf`가 아닌 `printk`를 활용한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-37-33.png>)
+
+<br>
+
+해당 c 파일을 컴파일하기 위해 Makefile을 수정한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-38-31.png>)
+
+<br>
+
+`-y` 옵션이 붙으면 해당 파일을 무조건 컴파일한다는 뜻이다. 다음과 같이 새롭게 라인을 추가한다. 이름은 파일 이름을 따라간다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-39-39.png>)
+
+추가를 완료했으면 한 디렉토리 위로 올라가서 `make clean` 명령어를 실행해준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-16 11-40-44.png>)
+
+<br>
+
+이후 `make zImage`를 통해 컴파일을 진행하고, 부트로더 모드에서 fastboot를 연결하여 커널을 플래시 해준다. 명령어는 `fastboot flash kernel zImage`.
