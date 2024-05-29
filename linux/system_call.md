@@ -137,3 +137,68 @@
 <br>
 
 이후 `make zImage`를 통해 컴파일을 진행하고, 부트로더 모드에서 fastboot를 연결하여 커널을 플래시 해준다. 명령어는 `fastboot flash kernel zImage`.
+
+
+### 3. 어플리케이션에서 System Call 함수 호출하기
+
+---
+
+#### 3.1 test_mysyscall.c 작성 및 컴파일
+
+`~/class/embedded_linux/work/test` 위치에 `vi test_mysyscall.c` 명령어를 통해 실습할 c 파일을 하나 만들어 준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-34-01.png>)
+
+<br>
+
+`syscall()` 이라는 함수는 마이크로 프로세서에 소프트웨어 인터럽트를 걸어주는 함수이다. 매개변수로 시스템 콜의 번호를 전달한다. 해당 번호들은 `arch/arm/unistd.h` 밑에 정의 되어있기 때문에 의존성을 추가해준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-32-54.png>)
+
+<br>
+
+어플리케이션 컴파일이기 때문에 `arm-linux` 컴파일러를 이용해서 해당 파일을 컴파일 해준다. 하지만 `unistd.h`의 위치를 지정해 주지 않았기 때문에 호스트 우분투 컴퓨터에 위치한 `unistd.h`가 호출되기 때문에 당연하게도 `__NR_mysyscall`에 해당하는 번호가 정의되지 않았다는 에러가 발생한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-35-26.png>)
+
+<br>
+
+따라서 헤더 파일의 위치를 직접 지정해 주는 컴파일 옵션 `I`를 통해 `unistd.h`의 위치를 지정해줘서 다시 컴파일한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-41-26.png>)
+
+<br>
+
+컴파일 완료한 실행 파일을 Target에 전달하기 위해서는 `tftp`를 이용한다. 따라서 `sudo cp test_mysyscall /var/lib/tftpboot/` 위치에 `test_mysyscall` 파일을 복사한다. 
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-43-10.png>)
+
+#### 3.2 네크워크 연결 및 test_mysyscall 실행
+
+`minicom`을 실행하여 Target의 콘솔을 확인하고 부팅해준다. 부팅이 완료되면 네트워크부터 설정해 준다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-45-37.png>)
+
+<br>
+
+네트워크 설정이 완료되었으면 `tftp -g -r test_mysyscall 10.10.10.1`을 통해 `test_mysyscall` 파일을 받아온다. 또 적당한 실행 권한을 부여한다. 그리고 실행한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 09-51-22.png>)
+
+<br>
+
+`tail -f /var/log/messages` 명령어를 통해 커널의 메시지를 지속적으로 확인해 볼 수 있다. 우리가 등록한 함수의 커널 메시지를 확인할 수 있다.
