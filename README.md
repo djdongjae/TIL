@@ -28,6 +28,7 @@
 * [리눅스 네트워크 설정](linux/network_config.md)
 * [TFTP 서버 및 xinetd 설치](linux/ftp_install.md)
 * [System Call](linux/system_call.md)
+* [File System](linux/file_system.md)
 
 
 
