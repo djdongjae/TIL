@@ -30,8 +30,6 @@
 * [System Call](linux/system_call.md)
 * [File System](linux/file_system.md)
 
-
-
 ### Web
 
 ---
@@ -45,3 +43,11 @@
 
 * [네트워크 통신 개요](network/server_client.md)
 * [HTTP 프로토콜과 REST API](network/http.md)
+
+### Infra
+
+---
+
+* [AWS EC2](infra/ec2.md)
+* [AWS RDS](infra/rds.md)
+* [Nginx로 HTTPS 설정하기](infra/nginx-https.md)

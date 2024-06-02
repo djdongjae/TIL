@@ -401,4 +401,67 @@ EC2 서버의 기본 타임존은 UTC입니다. 이는 세계 표준 시간으�
 
 ![alt text](<./image/Screenshot 2024-06-02 at 3.00.19 AM.png>)
 
+#### 2.4 git clone 하기
+
+우선 git 설치를 위해 다음 명령어를 입력해 줍니다. 중간에 질문이 나오면 `y`를 입력합니다.
+
+* `sudo yum install git`
+  
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 3.21.06 AM.png>)
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 3.21.26 AM.png>)
+
+<br>
+
+잘 설치되었는지 확인 하고 싶다면 `git --version`을 입력합니다.
+
+<br>
+
+그리고 배포하고 싶은 깃허브 레포지토리의 URL을 복사하고 홈 디렉토리에서 클론해 줍니다.
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 1.57.25 PM.png>)
+
+<br>
+
+현재 배포 서버에는 `application-prod.yml` 파일이 업로드 되어있지 않기 때문에 로컬 컴퓨터에서 해당 파일을 업로드해 줍니다. 업로드 하는 방식에는 다음과 같이 두 가지가 있습니다.
+
+1. 로컬 컴퓨터에서 서버 컴퓨터로 파일 직접 업로드
+2. vi 편집기를 이용해 파일을 만들고 내용만 복사
+
+1번 방식이 정석이지만 사람마다 파일 위치가 다를 것을 고려하여 2번 방식으로 대체하겠습니다. 1번 방식의 명령어만 소개하자면 다음과 같습니다.
+
+```shell
+scp -i 키파일 application-prod.yml ec2-user@IP 주소
+# 위 명령에 의해서, 내 PC 의 ~/application-prod.yml 파일이, EC2 서버의 홈디렉토리(~)로 업로드 됩니다.
+```
+
+<br>
+
+우선 서버 컴퓨터에서 `application-prod.yml`이 있어야 할 위치로 이동합니다. (명령어: `cd /home/ec2-user/LikeLionServer/src/main/resources`)
+
+<br>
+
+그리고 이곳에서 `application-prod.yml` 파일을 생성하여 줍니다. (명령어: `vi application-prod.yml`)
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 2.23.39 PM.png>)
+
+<br>
+
+해당 파일에 기존의 `application-prod.yml` 내용을 그대로 복사합니다. 그리고 저장하고 나옵니다.
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 2.28.35 PM.png>)
+
+
+
+
 
