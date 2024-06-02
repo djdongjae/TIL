@@ -401,11 +401,37 @@ EC2 서버의 기본 타임존은 UTC입니다. 이는 세계 표준 시간으�
 
 ![alt text](<./image/Screenshot 2024-06-02 at 3.00.19 AM.png>)
 
-#### 2.4 git clone 하기
+#### 2.4 java 설치
+
+다음 명령어로 java 17을 설치하여 줍니다. 중간에 질문이 나오면 `y`를 입력합니다.
+
+```console
+sudo yum install java-17-amazon-corretto-headless
+```
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 2.56.36 PM.png>)
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 2.56.58 PM.png>)
+
+<br>
+
+제대로 설치되었는지 확인하고 싶다면 `java --version`을 입력합니다.
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 2.57.09 PM.png>)
+
+#### 2.5 git clone 하기
 
 우선 git 설치를 위해 다음 명령어를 입력해 줍니다. 중간에 질문이 나오면 `y`를 입력합니다.
 
-* `sudo yum install git`
+```shell
+sudo yum install git
+```
   
 <br>
 
@@ -460,8 +486,4 @@ scp -i 키파일 application-prod.yml ec2-user@IP 주소
 <br>
 
 ![alt text](<./image/Screenshot 2024-06-02 at 2.28.35 PM.png>)
-
-
-
-
 
