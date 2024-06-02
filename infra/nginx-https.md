@@ -10,7 +10,7 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-02 at 11.25.51 PM.png>)
+![alt text](<./image/Screenshot 2024-06-02 at 11.25.51 PM.png>)
 
 <br>
 
@@ -18,7 +18,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-02 at 11.48.52 PM.png>)
+![alt text](<./image/Screenshot 2024-06-02 at 11.48.52 PM.png>)
 
 <br>
 
@@ -26,7 +26,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.20.07 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.20.07 AM.png>)
 
 <br>
 
@@ -34,7 +34,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.25.44 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.25.44 AM.png>)
 
 <br>
 
@@ -42,7 +42,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.27.17 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.27.17 AM.png>)
 
 <br>
 
@@ -50,7 +50,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.36.22 AM-1.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.36.22 AM-1.png>)
 
 <br>
 
@@ -58,7 +58,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.40.01 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.40.01 AM.png>)
 
 <br>
 
@@ -66,15 +66,15 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.42.39 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.42.39 AM.png>)
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.43.34 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.43.34 AM.png>)
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.44.16 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.44.16 AM.png>)
 
 <br>
 
@@ -82,7 +82,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.47.35 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.47.35 AM.png>)
 
 <br>
 
@@ -90,11 +90,11 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.49.33 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.49.33 AM.png>)
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.53.07 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.53.07 AM.png>)
 
 <br>
 
@@ -102,7 +102,7 @@ AWS 검색창에서 Route53을 검색하여 접속합니다.
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 12.55.23 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 12.55.23 AM.png>)
 
 <br>
 
@@ -186,7 +186,7 @@ sudo vi /etc/nginx/nginx.conf
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 1.05.49 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 1.05.49 AM.png>)
 
 <br>
 
@@ -194,7 +194,7 @@ sudo vi /etc/nginx/nginx.conf
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 1.34.44 AM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 1.34.44 AM.png>)
 
 <br>
 
@@ -246,4 +246,90 @@ server {
 
 <br>
 
-위에서 주의할 점은 추후 프론트엔드와 통신할 때 CORS 설정 중 `Access-Control-Allow-Origin` 부분을 와일드 카드(모두 허용)를 뜻하는 `*`이 아닌 프론트엔드 주소를 입력해야한다. 쿠키를 이용한 통신에서는 사이트 간 통신에서 와일드 카드가 허용되지 않기 때문이다. 프론트엔드 배포가 완료되면 배포 주소로 변경한다.
+위에서 주의할 점은 추후 프론트엔드와 통신할 때 CORS 설정 중 **`Access-Control-Allow-Origin` 부분을 와일드 카드(모두 허용)를 뜻하는 `*`이 아닌 프론트엔드 주소를 입력**해야 한다는 것이다. 쿠키를 이용한 통신에서는 사이트 간 통신에서 와일드 카드가 허용되지 않기 때문이다. 프론트엔드 배포가 완료되면 배포 주소로 변경한다.
+
+<br>
+
+또 주의할 점은 **Nginx에서 CORS 관련 헤더를 추가했으면 Spring Boot에서는 CORS 처리를 하면 안된다**는 점이다. CORS 처리는 헤더를 추가하는 과정이기 때문에 두 곳에서 같은 헤더를 추가하면 충돌이 발생하기 때문이다.
+
+<br>
+
+Nginx 설정을 수정했기 때문에 먼저 Nginx 문법에 오류가 없는지 확인하는 명령어로 테스트를 진행한다.
+
+```shell
+sudo nginx -t
+```
+
+<br>
+
+문제가 없다면 다음 명령어를 통해 설정을 재반영하여 재실행해 줍니다.
+
+```shell
+sudo systemctl restart nginx.service
+```
+
+<br>
+
+### 3. Let's encrypt SSL 인증서 발급(HTTPS 적용)
+
+---
+
+#### 3.1 certbot 설치
+
+Let's encrypt 기관이 제공하는 certbot (certification robot) 데몬을 이용하면 인증서 발급, 인증서 설치, 인증서 갱신이 모두 자동으로 처리됩니다. SSL 인증서는 90일마다 갱신되어야 하는데, 이 갱신 작업도 certbot에 의해 자동으로 처리됩니다.
+
+<br>
+
+다음 명령어로 `cerbot`을 설치합니다.
+
+```python
+sudo yum install certbot python3-certbot-nginx
+```
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-03 at 2.27.17 AM.png>)
+
+<br>
+
+다음 명령어로 암호화된 https 프로토콜로만 도메인에 접근할 수 있도록 설정하여 줍니다.
+
+```python
+sudo certbot --nginx -d cookie-house.store # 본인 도메인 입력
+```
+
+<br>
+
+원한다면 갱신 알림과 보안 문제 등을 위한 이메일을 입력해 주고, 나머지 부분도 모두 yes를 입력합니다. 정상적으로 인증서가 발급되면 마지막 부분에 축하한다는 문구가 뜬다.
+
+<br>
+
+Congratulations! You have successfully enabled HTTPS on https://cookie-house.store
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-03 at 2.31.54 AM.png>)
+
+<br>
+
+이제 https를 적용한 본인 도메인으로 접속이 가능한다!!!
+
+<br>
+
+사람들이 사이트로 요청할 때마다 발생하는 접근 로그를 보고 싶다면 다음 명령어를 입력한다.
+
+```python
+tail -f /var/log/nginx/proxy/access.log
+```
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-03 at 2.44.08 AM.png>)
+
+<br>
+
+에러 로그만을 확인하고 싶다면 다음 명령어를 입력한다.
+
+```python
+tail -f /var/log/nginx/proxy/error.log
+```

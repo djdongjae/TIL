@@ -48,6 +48,6 @@
 
 ---
 
-* [AWS EC2](infra/ec2.md)
-* [AWS RDS](infra/rds.md)
-* [Nginx로 HTTPS 설정하기](infra/nginx-https.md)
+* [AWS EC2 서버 구축하기](infra/ec2.md)
+* [AWS RDS 구축 및 Spring Boot 실행하기](infra/rds.md)
+* [Nginx로 HTTPS 및 CORS 처리하기](infra/nginx-https.md)
