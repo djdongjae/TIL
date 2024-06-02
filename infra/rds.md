@@ -1,4 +1,4 @@
-# AWS RDS
+# AWS RDS 구축 및 Spring Boot 실행하기
 
 ### 1. RDS 설정
 

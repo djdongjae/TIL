@@ -1,4 +1,4 @@
-# Nginx, HTTPS 설정
+# Nginx로 HTTPS 및 CORS 처리하기
 
 ### 1. DNS 등록하기
 
