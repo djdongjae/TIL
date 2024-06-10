@@ -312,7 +312,39 @@ Congratulations! You have successfully enabled HTTPS on https://cookie-house.sto
 
 <br>
 
-이제 https를 적용한 본인 도메인으로 접속이 가능합니다!!!
+먼저 현재 8080포트에서 스프링 부트가 실행 중인지 확인합니다.
+
+```shell
+sudo lsof -i:8080 
+```
+
+<br>
+
+아무것도 나오지 않는다면 스프링 부트 애플리케이션을 다시 실행하여 줍니다. 본인의 애플리케이션이 실행 중이라면 생략하고 아니라면 먼저 다음 위치로 이동합니다.
+
+```shell
+cd /home/ec2-user/LikeLionServer/build/libs
+```
+
+<br>
+
+그리고 이전에 했던 것처럼 스프링 부트를 백그라운드에서 실행하여 줍니다. (명령어 실행 이후 2번 정도 엔터를 누름)
+
+```shell
+nohup java -jar lesserafim-0.0.1-SNAPSHOT.jar &
+```
+
+<br>
+
+이제 nginx 설정을 재반영하고 `https://본인도메인`으로 접속하여 봅니다.
+
+```shell
+sudo systemctl restart nginx.service
+```
+
+<br>
+
+https를 적용한 본인 도메인으로 접속이 가능합니다!!!
 
 <br>
 
@@ -332,4 +364,71 @@ tail -f /var/log/nginx/proxy/access.log
 
 ```python
 tail -f /var/log/nginx/proxy/error.log
+```
+
+### 4. 코드 수정 사항 반영하기
+
+먼저 코드를 수정하고 원격 저장소의 `main` 브랜치에 `push`를 해줍니다.
+
+<br>
+
+그리고 서버 컴퓨터로 돌아와서 본인 프로젝트 위치에서 원격 저장소의 내용을 `pull` 합니다.
+
+```shell
+git pull origin main
+```
+
+<br>
+
+현재 구동중인 애플리케이션을 종료하여 줍니다. 애플리케이션의 종료를 원할 때는 Spring이 돌아가고 있는 PID를 다음 명령어를 통해 확인한 다음 프로세스를 종료합니다.
+
+```shell
+ps -ef | grep jar
+```
+![alt text](<./image/Screenshot 2024-06-02 at 8.11.44 PM.png>)
+
+<br>
+
+위 화면에서 PID는 58110입니다. 따라서 애플리케이션을 종료하고 싶다면 다음 명령어를 입력합니다.
+
+```shell
+kill -9 58110
+```
+
+<br>
+
+다음으로 수정된 코드의 프로젝트를 다시 빌드합니다. 우선 다음 위치로 이동하여 줍니다.
+
+```shell
+cd /home/ec2-user/LikeLionServer
+```
+
+<br>
+
+현재는 테스트 코드를 작성하지 않았기 때문에 테스트 없이 빌드 합니다. 다음 명령어를 순서대로 실행하여 줍니다.
+
+```shell
+./gradlew clean build -x test
+```
+
+<br>
+
+![alt text](<./image/Screenshot 2024-06-02 at 7.20.24 PM.png>)
+
+<br>
+
+다시 다음 위치로 이동하면 2개의 jar 파일이 새롭게 빌드된 것을 확인할 수 있습니다.
+
+```shell
+cd /home/ec2-user/LikeLionServer/build/libs
+```
+
+![alt text](<./image/Screenshot 2024-06-02 at 7.27.05 PM.png>)
+
+<br>
+
+이제 다음 명령어로 jar 파일을 백그라운드에서 실행합니다. 즉 터미널 창을 닫아도 애플리케이션이 계속 실행됩니다.
+
+```shell
+nohup java -jar lesserafim-0.0.1-SNAPSHOT.jar &
 ```

@@ -135,3 +135,4 @@ target과 host 모두에서 fastboot를 정상 연결하고 `fastboot flash kern
 다음과 같이 프롬프트에 정상적으로 flash된 것을 확인한다.
 
 ![alt text](<./image/Screenshot from 2024-05-02 11-33-02.png>)
+

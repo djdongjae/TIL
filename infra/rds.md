@@ -58,7 +58,7 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 2.47.02 PM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 2.47.02 PM.png>)
 
 <br>
 
@@ -82,7 +82,7 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 2.59.13 PM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 2.59.13 PM.png>)
 
 <br>
 
@@ -90,11 +90,11 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 3.00.34 PM-1.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 3.00.34 PM-1.png>)
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 3.01.50 PM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 3.01.50 PM.png>)
 
 <br>
 
@@ -102,7 +102,7 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 3.03.26 PM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 3.03.26 PM.png>)
 
 <br>
 
@@ -110,7 +110,7 @@
 
 <br>
 
-![alt text](<Screenshot 2024-06-03 at 3.06.43 PM.png>)
+![alt text](<./image/Screenshot 2024-06-03 at 3.06.43 PM.png>)
 
 <br>
 
@@ -172,7 +172,6 @@ RDS를 처음 생성하면 몇가지 설정을 필수로 해야 합니다. 우�
 * character_set_connection
 * character_set_database
 * character_set_filesystem
-* character_set_results
 * character_set_results
 * character_set_server
 
