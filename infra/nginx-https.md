@@ -368,6 +368,8 @@ tail -f /var/log/nginx/proxy/error.log
 
 ### 4. 코드 수정 사항 반영하기
 
+---
+
 먼저 코드를 수정하고 원격 저장소의 `main` 브랜치에 `push`를 해줍니다.
 
 <br>
