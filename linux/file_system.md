@@ -1,6 +1,6 @@
 # File System
 
-### 1. 개요
+## 1. 개요
 
 ---
 
@@ -23,7 +23,7 @@
 기존에는 `ramdisk`라고 하는 휘발성 메모리 기반의 파일 시스템을 사용했다. 그러다 파일 시스템의 규모가 점점 커지다보니 플래시를 이용한 파일 시스템이 등장하게 되었다. 이후 플래시 파일 시스템을 거쳐 현재는 하드디스크와 SSD를 이용한 파일 시스템을 주로 활용한다.
 > ✅ 파일 시스템을 설계할 때 개발자가 처음부터 끝까지 모든 것을 설계하는 것이 아니라 `BusyBox` 라는 소프트웨어를 이용하여 임베디드 시스템 구축에 필요한 다양한 패키지를 로드한다.
 
-### 2. File System 디렉토리 살펴보기 및 이미지 굽기
+## 2. File System 디렉토리 살펴보기 및 이미지 굽기
 
 ---
 
@@ -134,3 +134,95 @@
 <br>
 
 ![alt text](<./image/Screenshot from 2024-05-23 11-25-23.png>)
+
+<br>
+
+## 3. NFS: Network File System
+
+---
+
+### 3.1 개요
+
+네트워크를 이용해 파일을 공유하는 시스템으로 멀티 유저 시스템인 리눅스에서 사용할 수 있는 프로그램이다. 현 시점에서는 TFTP를 대체하기 위한 용도라고 볼 수 있다. 서버의 디렉토리를 클라이언트에 마운트하는 개념이라고 볼 수 있다.
+
+<br>
+
+NFS도 파일시스템이기 때문에 결국 커널이 지원해야 사용할 수 있다. 따라서 현재 커널에서 NFS를 지원하고 있는지 확인하기 위해 `~/class/embedded_linux/work/kernel/kernel_4412` 위치에서 `make menuconfig` 명령어를 입력한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-31-36.png>)
+
+<br>
+
+이제 다음 순서대로 `File systems` -> `The Extended 4 (ext4) filesystem` -> `Network File Systems` -> `NFS client support`로 진입하면 NFS를 지원하는 것을 확인 할 수 있다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-31-52.png>)
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-31-56.png>)
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-32-52.png>)
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-33-04.png>)
+
+<br>
+
+### 3.2 RPC
+
+RPC란 Remote Procedure Call의 약자로 클라이언트에서 서버로부터 디렉토리를 받거나 마운트 시켰으면 서버의 프로시저를 호출해서 실행할 수 있게 하는 통신 기술이다. 
+
+<br>
+
+따라서 이를 이용하기 위해서는 서버에 `RPC Bind`가 설치 되어있어야 한다. 먼저 서버에 nfs 관련 패키지가 설치 되어있는 지 확인하기 위해 다음 명령어를 입력한다.
+
+```shell
+apt list --installed | grep nfs
+```
+
+다음과 같은 패키지가 설치된 것을 확인할 수 있다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-36-11.png>)
+
+<br>
+
+다음으로 `RPC Bind` 관련 프로그램이 설치 되어있는 지 확인한다. 만약 설치가 되어있다면 프로세스가 실행 중이어야 하기 때문에 다음 명령어를 입력한다.
+
+```shell
+ps -ef | grep rpcbind
+```
+
+설치가 되어있지 않기 때문에 다음 명령어로 설치를 진행한다.
+
+```shell
+sudo apt install rpcbind
+```
+
+설치를 완료하면 자동으로 프로세스가 실행된 모습을 확인할 수 있다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-37-28.png>)
+
+<br>
+
+다음으로 커널용 nfs 서버도 설치를 해주어야 한다. 다음 명령어를 입력한다.
+
+<br>
+
+```shell
+sudo apt install nfs-kernel-server
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-23 11-37-56.png>)
