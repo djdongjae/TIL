@@ -181,7 +181,7 @@ RPC란 Remote Procedure Call의 약자로 클라이언트에서 서버로부터 
 
 <br>
 
-따라서 이를 이용하기 위해서는 서버에 `RPC Bind`가 설치 되어있어야 한다. 먼저 서버에 nfs 관련 패키지가 설치 되어있는 지 확인하기 위해 다음 명령어를 입력한다.
+따라서 NFS를 이용하기 위해서는 서버에 `RPC Bind`가 설치 되어있어야 한다. 먼저 서버에 nfs 관련 패키지가 설치 되어있는 지 확인하기 위해 다음 명령어를 입력한다.
 
 ```shell
 apt list --installed | grep nfs
@@ -226,3 +226,124 @@ sudo apt install nfs-kernel-server
 <br>
 
 ![alt text](<./image/Screenshot from 2024-05-23 11-37-56.png>)
+
+<br>
+
+### 3.3 NFS 서버 디렉토리 설정
+
+NFS는 기본적으로 서버의 디렉토리를 클라이언트가 자유롭게 사용할 수 있게 하는 구조이기 때문에 엄격한 절차를 거쳐 어떤 디렉토리를 사용할 수 있게 할 것인지 결정해야 한다. 다음 위치의 파일을 열어본다.
+
+```shell
+sudo vi /etc/exports
+```
+<br>
+
+서버의 `/home/dongjaeoh/class/embedded_linux` 디렉토리를 `10.10.10.2`에 해당하는 컴퓨터가 사용할 수 있게 등록할 것이다. 또한 옵션으로 read, write가 가능하고 sync도 맞출 것이며 `no_root_squash` 설정을 통해 클라이언트가 가지고 있는 루트 권한을 뺏지 않게 한다. 즉, 임베디드 환경이기 때문에 클라이언트 또한 자유롭게 서버의 디렉토리에 대해 루트 권한을 행사할 수 있게 설정해 준다.
+
+```shell
+/home/dongjaeoh/class/embedded_linux 10.10.10.2(rw,sync,no_root_squash)
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-23-51.png>)
+
+<br>
+
+먼저 `rpcbind` 데몬과 NFS 서버가 잘 동작하고 있는지 확인한다.
+
+```shell
+sudo systemctl status rpcbind.service #rpcbind
+sudo systemctl status nfs-kernel-server.service #nfs
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-24-57.png>)
+
+<br>
+
+그리고 설정 수정했으니 변경사항을 재반영하여 준다. 
+
+```shell
+sudo systemctl restart nfs-kernel-server.service
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-26-01.png>)
+
+<br>
+
+RPC가 잘 동작하는지 확인하기 위해 다음 명령어를 입력한다.
+
+```shell
+rpcinfo -p
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-26-26.png>)
+
+<br>
+
+설정한 exports가 제대로 반영되었는지 확인하기 위해 다음 명령어를 입력한다.
+
+```shell
+sudo exportfs -v
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-26-38.png>)
+
+<br>
+
+다음 명령어로도 마운트된 파일 시스템 정보를 확인할 수 있다.
+
+```shell
+showmount -e localhost
+```
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-27-45.png>)
+
+<br>
+
+Target으로 돌아가서 케이블을 모두 연결하고 부팅을 진행하여 준다. 수동으로 마운트 되는 파일 시스템을 관리하기 위해서는 `/mnt` 경로에 진입한다. 자동으로 마운트되는 파일 시스템은 `/media`에서 관리한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-38-06.png>)
+
+<br>
+
+실습을 위해 `/mnt` 밑에 `embedded_linux` 디렉토리를 하나 생성한다.
+
+<br>
+
+![alt text](<./image/Screenshot from 2024-05-30 09-39-11.png>)
+
+<br>
+
+다음으로 Host와 통신하기 위해 이더넷 IP주소를 등록한다.
+
+```shell
+ifconfig eth0 10.10.10.2 netmask 255.255.255.0
+```
+
+<br>
+
+NFS 서버와 통신하기 위해 디렉토리를 마운트 시켜주는 다음 명령어를 입력한다.
+
+```shell
+mount -t nfs -o nolock 10.10.10.1:/home/dongjaeoh/class/embedded_linux /mnt/embedded_linux
+```
+
+<br>
+
+일전에 만들어 두었던 `hello_arm`이나 `hello_mysyscall` 같은 파일을 실행하여 보면 정상적으로 실행되는 것을 확인할 수 있다.
+
+<br>
+
