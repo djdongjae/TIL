@@ -12,6 +12,8 @@
 
 ### 2.1 소스코드 다운
 
+---
+
 먼저 다음 위치에 `drivers` 라고 하는 디렉토리를 하나 생성한다.
 
 ```shell
@@ -37,6 +39,8 @@ mkdir ~/class/embedded_linux/work/drivers
 <br>
 
 ### 2.2 Device Driver 컴파일 후 등록
+
+---
 
 우선 컴파일을 해야 하기 때문에 `Makefile` 에서 컴파일러의 위치와 종류, 그리고 커널의 위치를 재지정해 주어야 한다.
 
