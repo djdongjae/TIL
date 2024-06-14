@@ -24,7 +24,7 @@ mkdir ~/class/embedded_linux/work/drivers
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 10-08-08.png>)
+![alt text](<./image/Screenshot from 2024-05-30 10-08-08.png>)
 
 <br>
 
@@ -32,7 +32,7 @@ mkdir ~/class/embedded_linux/work/drivers
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-03-21.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-03-21.png>)
 
 <br>
 
@@ -42,7 +42,7 @@ mkdir ~/class/embedded_linux/work/drivers
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-17-44.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-17-44.png>)
 
 <br>
 
@@ -50,7 +50,7 @@ mkdir ~/class/embedded_linux/work/drivers
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-18-31.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-18-31.png>)
 
 <br>
 
@@ -58,7 +58,7 @@ NFS를 사용중이기 때문에 Target에서도 컴파일된 결과물들을 �
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-21-09.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-21-09.png>)
 
 <br>
 
@@ -74,7 +74,7 @@ cat /proc/devices
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-23-01.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-23-01.png>)
 
 <br>
 
@@ -82,7 +82,7 @@ cat /proc/devices
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-25-19.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-25-19.png>)
 
 <br>
 
@@ -90,7 +90,7 @@ skeleton_init 함수가 호출되고 메이저 번호로 248번이 할당된 것
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-30-11.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-30-11.png>)
 
 <br>
 
@@ -107,11 +107,11 @@ mknod skeleton c 248 0
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-31-43.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-31-43.png>)
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-33-25.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-33-25.png>)
 
 <br>
 
@@ -119,7 +119,7 @@ mknod skeleton c 248 0
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-34-15.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-34-15.png>)
 
 <br>
 
@@ -127,4 +127,4 @@ Target에서 `skeleton_test`를 실행해 보면 다음과 같이 잘 실행되�
 
 <br>
 
-![alt text](<Screenshot from 2024-05-30 11-36-06.png>)
+![alt text](<./image/Screenshot from 2024-05-30 11-36-06.png>)
