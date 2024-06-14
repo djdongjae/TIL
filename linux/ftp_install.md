@@ -1,21 +1,25 @@
 # TFTP
 
-### 1. 개요
+## 1. 개요
+
+### 1.1 Target - Host Connection
 
 ---
-
-#### 1.1 Target - Host Connection
 
 Target과 Host를 연결하는 방식에는 총 3가지 방식이 있다. 콘솔을 확인하기 위한 Serial 연결, `fastboot`를 통해 이미지 다운을 하기 위한 USB 연결, 그리고 이더넷 연결이 있다. 이더넷 연결은 커널이 모두 부팅된 이후에 어플리케이션을 주고 받는 데 사용되는 연결이다. 
 > ✅ Host의 네트워크 인터페이스를 확인하면 외부 인터넷과 연결되는 온보드 연결이 있고, Target과 연결되는 `USB to Ethernet` 연결이 있다.
 
 
-#### 1.2 FTP
+### 1.2 FTP
+
+---
 
 Host에서 제작한 애플리케이션을 Target으로 다운하기 위해서는 `FTP`라고 하는 네트워크 프로토콜이 필요하다. 하지만 현재 상황과 같이 Host와 Target을 1대1로 연결하는 과정에서 `FTP`를 사용하기는 너무 무겁고, `TFTP`를 사용한다. `TFTP`는 UDP로 동작하기 때문에 폐쇄적인 환경에서 사용하기 적합하며 에러 컨트롤, 플로우 컨트롤 등의 기능을 제공하지 않는다.
 
 
-#### 1.3 TFTP
+### 1.3 TFTP
+
+---
 
 `TFTP` 프로토콜을 사용하기 위해서는 Target에는 `TFTP Client`, Host에는 `TFTP Server`를 설치해야 한다. 다만 Target에는 이미 `TFTP Client`가 내장되어 있기 때문에 Host에서만 설치 및 설정을 진행하면 된다.
 
@@ -23,11 +27,11 @@ Host에서 제작한 애플리케이션을 Target으로 다운하기 위해서�
 
 리눅스에서는 `xinetd`가 `superdaemon`으로 가장 많이 사용된다. 따라서 클라이언트의 요청을 정상적으로 처리하기 위해서는 `xinetd`에 `xinetd`가 관리할 서버를 등록해 주어야 한다.
 
-### 2. 설치
+## 2. 설치
+
+### 2.1 xinetd & tftp
 
 ---
-
-#### 2.1 xinetd & tftp
 
 `sudo apt install xinetd` 명령어를 통해 `xinetd`를 설치하면 `/etc/`위치에 `xinetd.d`이름의 설정 디렉토리가 생성된다.<br>
 
@@ -60,7 +64,9 @@ Host에서 제작한 애플리케이션을 Target으로 다운하기 위해서�
 다시 명령어를 입력해 보면 `tftp` 프로토콜을 사용할 수 있는 것을 확인할 수 있다.<br>
 ![alt text](<./image/Screenshot 2024-05-16 at 5.09.25 PM.png>)
 
-#### 2.2 hello.c 테스트
+### 2.2 hello.c 테스트
+
+---
 
 테스트를 위해 `hello.c`를 만들어 Target에서 실행해 보도록 하겠다.<br>
 ![alt text](<./image/Screenshot 2024-05-16 at 5.14.36 PM.png>)
