@@ -21,6 +21,7 @@
 
 ---
 
+* [Ubuntu Linux 설치](linux/ubuntu_linux.md)
 * [크로스 컴파일러](linux/compiler_install.md)
 * [부트로더 컴파일](linux/bootloader_compile.md)
 * [부트로더 설치](linux/bootloader_install.md)
