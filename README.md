@@ -52,3 +52,9 @@
 * [AWS EC2 서버 구축하기](infra/ec2.md)
 * [AWS RDS 구축 및 Spring Boot 실행하기](infra/rds.md)
 * [Nginx로 HTTPS 및 CORS 처리하기](infra/nginx-https.md)
+
+### etc
+
+---
+
+* [2024 소프트웨어 캡스톤 디자인 회고](memo/capston-dj.md)
