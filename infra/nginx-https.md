@@ -194,7 +194,7 @@ sudo vi /etc/nginx/nginx.conf
 
 <br>
 
-![alt text](<./image/Screenshot 2024-06-03 at 1.34.44 AM.png>)
+![alt text](<./image/Screenshot 2024-06-24 at 5.37.29 PM.png>)
 
 <br>
 
@@ -232,14 +232,6 @@ server {
                 add_header 'Access-Control-Allow-Methods' 'GET, POST, PATCH, OPTIONS, PUT, DELETE' always;
                 add_header 'Access-Control-Allow-Credentials' 'true' always;
                 add_header 'Access-Control-Allow-Headers' 'Authorization,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range' always;
-        }
-
-        error_page 404 /404.html;
-        location = /404.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
         }
     }
 ```
