@@ -17,6 +17,14 @@
 * [CSRF 토큰 발급 및 쿠키 설정](network/csrf_token_cookie.md)
 * [학생 조회 API](spring/spring_start.md)
 
+### JPA
+
+---
+
+#### Querydsl
+
+* [프로젝트 환경설정](querydsl/01.md)
+
 ### Linux
 
 ---
