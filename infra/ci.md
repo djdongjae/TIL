@@ -1,4 +1,4 @@
-# CI/CD
+# AWS CodeDeploy 설정하기
 
 ## 1. AWS IAM
 

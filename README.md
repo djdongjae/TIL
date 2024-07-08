@@ -70,6 +70,8 @@
 * [AWS EC2 서버 구축하기](infra/ec2.md)
 * [AWS RDS 구축 및 Spring Boot 실행하기](infra/rds.md)
 * [Nginx로 HTTPS 및 CORS 처리하기](infra/nginx-https.md)
+* [AWS CodeDeploy 설정하기](infra/ci.md)
+* [Nginx 무중단 배포환경 구축하기](infra/zero-downtime.md)
 
 ### etc
 
