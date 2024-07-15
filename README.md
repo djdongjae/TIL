@@ -73,6 +73,12 @@
 * [AWS CodeDeploy 설정하기](infra/ci.md)
 * [Nginx 무중단 배포환경 구축하기](infra/zero-downtime.md)
 
+### Algorithm
+
+---
+
+* [2024 이카운트 신입채용 코딩테스트 문제](./algorithm/ecount.md)
+
 ### etc
 
 ---
