@@ -53,6 +53,11 @@
 
 * [HTML 태그 분석](html_css_javascript/tags.md)
 
+### DB
+
+---
+
+* [DB 인덱싱을 하는 이유와 원리](./db/db_index.md)
 
 ### Network
 
