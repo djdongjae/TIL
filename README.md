@@ -58,6 +58,7 @@
 ---
 
 * [DB 인덱싱을 하는 이유와 원리](./db/db_index.md)
+* [DBMS 선정 과정 및 기준](./db/db_choose.md)
 
 ### Network
 
