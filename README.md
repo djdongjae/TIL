@@ -83,6 +83,12 @@
 
 * [2024 이카운트 신입채용 코딩테스트 문제](./algorithm/ecount.md)
 
+### AI
+
+---
+
+* [Cursor AI 기초 사용법 정리](./cursor/summary.md)
+
 ### etc
 
 ---
